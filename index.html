@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aroma 3D — Artisanal Coffee Experience</title>
+    <!-- Meta tags for SEO -->
+    <meta name="description" content="Immerse yourself in Aroma 3D, a premium, interactive 3D coffee shop experience. Discover our artisanal blends, brewing process, and craft.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Three.js Canvas Container -->
+    <div id="canvas-container"></div>
+    
+    <!-- Custom Scroll Progress Bar -->
+    <div id="progress-bar"></div>
+
+    <!-- Header / Navigation -->
+    <header class="header">
+        <div class="logo">
+            <span class="logo-icon">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                    <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                    <line x1="6" y1="1" x2="6" y2="4"></line>
+                    <line x1="10" y1="1" x2="10" y2="4"></line>
+                    <line x1="14" y1="1" x2="14" y2="4"></line>
+                </svg>
+            </span>
+            <span class="logo-text">AROMA 3D</span>
+        </div>
+        <nav class="nav">
+            <a href="#hero" class="nav-link active">Home</a>
+            <a href="#about" class="nav-link">Our Story</a>
+            <a href="#menu" class="nav-link">Menu</a>
+            <a href="#craft" class="nav-link">Craft</a>
+            <a href="#contact" class="nav-link">Find Us</a>
+        </nav>
+        <button class="cta-button nav-cta">Order Online</button>
+        <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav" id="mobileNav">
+        <a href="#hero" class="mobile-link">Home</a>
+        <a href="#about" class="mobile-link">Our Story</a>
+        <a href="#menu" class="mobile-link">Menu</a>
+        <a href="#craft" class="mobile-link">Craft</a>
+        <a href="#contact" class="mobile-link">Find Us</a>
+        <button class="cta-button mobile-cta">Order Online</button>
+    </div>
+
+    <!-- Main Content Container -->
+    <main class="scroll-container">
+        
+        <!-- Hero Section -->
+        <section id="hero" class="section">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <span class="tagline">Artisanal &amp; Immersive</span>
+                    <h1 class="hero-title">Experience Coffee<br><span class="accent-text">In Three Dimensions</span></h1>
+                    <p class="hero-desc">Indulge your senses with our micro-roasted single-origin beans, brewed using precise mathematical temperature ratios and served in a state-of-the-art interactive atmosphere.</p>
+                    <div class="hero-actions">
+                        <a href="#menu" class="btn primary-btn">Explore Menu</a>
+                        <a href="#about" class="btn secondary-btn">Our Story</a>
+                    </div>
+                </div>
+                <!-- Canvas placeholder or floating helper for interaction on desktop -->
+                <div class="hero-visual-helper">
+                    <div class="scroll-indicator">
+                        <div class="mouse">
+                            <div class="wheel"></div>
+                        </div>
+                        <span>Scroll to Explore</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container two-col-layout">
+                <div class="content-left">
+                    <!-- Space for the 3D model on scroll -->
+                </div>
+                <div class="content-right text-card">
+                    <span class="tagline">Our Heritage</span>
+                    <h2 class="section-title">Cultivating Excellence Since 2012</h2>
+                    <p class="section-desc">Every cup tells a story that begins in the high-altitude hills of Ethiopia and Colombia. We source directly from family-run farms, ensuring fair wages and sustainable soil practices.</p>
+                    <p class="section-desc">Our master roasters treat coffee roasting as an art and science, coaxing out complex notes of stone fruit, cacao nibs, and toasted jasmine from every single bean.</p>
+                    <div class="about-badges">
+                        <div class="badge-item">
+                            <div class="badge-icon">☕</div>
+                            <div>
+                                <h4>100% Single Origin</h4>
+                                <p>Sourced ethically and traceably.</p>
+                            </div>
+                        </div>
+                        <div class="badge-item">
+                            <div class="badge-icon">🔥</div>
+                            <div>
+                                <h4>Micro-Roasted</h4>
+                                <p>Small batches for maximum flavor.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu Section -->
+        <section id="menu" class="section">
+            <div class="container menu-container">
+                <div class="menu-header">
+                    <span class="tagline">Our Signature Brews</span>
+                    <h2 class="section-title">The Interactive Menu</h2>
+                    <p class="menu-intro">Select a signature brew to customize the 3D cup and explore its distinct profile.</p>
+                </div>
+                
+                <div class="menu-grid">
+                    <!-- Interactive Menu Selection Buttons (Left) -->
+                    <div class="menu-selectors">
+                        <div class="menu-item active" data-drink="espresso" data-color="#2b1a11" data-roughness="0.15" data-foam="0.0">
+                            <div class="menu-item-info">
+                                <span class="item-number">01</span>
+                                <h3 class="item-name">Classic Espresso</h3>
+                                <p class="item-desc">Intense, rich shot with a thick, hazelnut-toned crema.</p>
+                            </div>
+                            <span class="item-price">$3.50</span>
+                        </div>
+                        
+                        <div class="menu-item" data-drink="latte" data-color="#966d54" data-roughness="0.4" data-foam="0.8">
+                            <div class="menu-item-info">
+                                <span class="item-number">02</span>
+                                <h3 class="item-name">Velvet Latte</h3>
+                                <p class="item-desc">Smooth, sweet micro-foamed milk poured over double espresso.</p>
+                            </div>
+                            <span class="item-price">$4.75</span>
+                        </div>
+
+                        <div class="menu-item" data-drink="cappuccino" data-color="#80563b" data-roughness="0.5" data-foam="1.0">
+                            <div class="menu-item-info">
+                                <span class="item-number">03</span>
+                                <h3 class="item-name">Frothy Cappuccino</h3>
+                                <p class="item-desc">Thick layer of airy milk foam finished with raw cocoa powder.</p>
+                            </div>
+                            <span class="item-price">$4.50</span>
+                        </div>
+
+                        <div class="menu-item" data-drink="matcha" data-color="#5a7d52" data-roughness="0.6" data-foam="0.9">
+                            <div class="menu-item-info">
+                                <span class="item-number">04</span>
+                                <h3 class="item-name">Ceremonial Matcha</h3>
+                                <p class="item-desc">Stone-ground Japanese matcha whisked with oat milk.</p>
+                            </div>
+                            <span class="item-price">$5.25</span>
+                        </div>
+                    </div>
+
+                    <!-- Visual Details Card (Right) -->
+                    <div class="menu-details-panel glass-card">
+                        <div class="details-content active" id="details-espresso">
+                            <div class="radar-bars">
+                                <div class="bar-row"><span>Intensity</span><div class="bar-fill" style="width: 95%;"></div></div>
+                                <div class="bar-row"><span>Sweetness</span><div class="bar-fill" style="width: 30%;"></div></div>
+                                <div class="bar-row"><span>Acidity</span><div class="bar-fill" style="width: 55%;"></div></div>
+                            </div>
+                            <div class="notes-container">
+                                <h4>Flavor Profile</h4>
+                                <div class="tag-group">
+                                    <span class="flavor-tag">Dark Chocolate</span>
+                                    <span class="flavor-tag">Molasses</span>
+                                    <span class="flavor-tag">Citrus Crema</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="details-content" id="details-latte">
+                            <div class="radar-bars">
+                                <div class="bar-row"><span>Intensity</span><div class="bar-fill" style="width: 50%;"></div></div>
+                                <div class="bar-row"><span>Sweetness</span><div class="bar-fill" style="width: 80%;"></div></div>
+                                <div class="bar-row"><span>Acidity</span><div class="bar-fill" style="width: 20%;"></div></div>
+                            </div>
+                            <div class="notes-container">
+                                <h4>Flavor Profile</h4>
+                                <div class="tag-group">
+                                    <span class="flavor-tag">Vanilla Bean</span>
+                                    <span class="flavor-tag">Toasted Honey</span>
+                                    <span class="flavor-tag">Malty Finish</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="details-content" id="details-cappuccino">
+                            <div class="radar-bars">
+                                <div class="bar-row"><span>Intensity</span><div class="bar-fill" style="width: 65%;"></div></div>
+                                <div class="bar-row"><span>Sweetness</span><div class="bar-fill" style="width: 60%;"></div></div>
+                                <div class="bar-row"><span>Acidity</span><div class="bar-fill" style="width: 35%;"></div></div>
+                            </div>
+                            <div class="notes-container">
+                                <h4>Flavor Profile</h4>
+                                <div class="tag-group">
+                                    <span class="flavor-tag">Cinnamon Bark</span>
+                                    <span class="flavor-tag">Roasted Hazelnut</span>
+                                    <span class="flavor-tag">Nutmeg Dust</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="details-content" id="details-matcha">
+                            <div class="radar-bars">
+                                <div class="bar-row"><span>Intensity</span><div class="bar-fill" style="width: 40%;"></div></div>
+                                <div class="bar-row"><span>Sweetness</span><div class="bar-fill" style="width: 70%;"></div></div>
+                                <div class="bar-row"><span>Acidity</span><div class="bar-fill" style="width: 10%;"></div></div>
+                            </div>
+                            <div class="notes-container">
+                                <h4>Flavor Profile</h4>
+                                <div class="tag-group">
+                                    <span class="flavor-tag">Uji Matcha</span>
+                                    <span class="flavor-tag">Earthy Grass</span>
+                                    <span class="flavor-tag">Sweet Pistachio</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Craftsmanship Section -->
+        <section id="craft" class="section">
+            <div class="container two-col-layout inverted-layout">
+                <div class="content-left text-card">
+                    <span class="tagline">The Roasting Science</span>
+                    <h2 class="section-title">Precise Roasting &amp; Temperature Control</h2>
+                    <p class="section-desc">Our specialty roasting profiling records temperature profiles at 1-second intervals. We target the first crack at exactly 196°C to unlock delicate floral aromas without charred bitterness.</p>
+                    <p class="section-desc">When brewing, we utilize reverse-osmosis filtered water heated to a exact 93.5°C to extract coffee solids with scientific precision, matching our target TDS of 1.35%.</p>
+                    <div class="craft-stats">
+                        <div class="stat-item">
+                            <span class="stat-num">93.5°C</span>
+                            <span class="stat-label">Water Temp</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-num">1:16</span>
+                            <span class="stat-label">Brew Ratio</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-num">1.35%</span>
+                            <span class="stat-label">TDS Target</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-right">
+                    <!-- Space for the 3D model zooming in / steam particles active -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact & Location Section -->
+        <section id="contact" class="section">
+            <div class="container contact-container">
+                <div class="contact-header">
+                    <span class="tagline">Visit Our Sanctuary</span>
+                    <h2 class="section-title">Drop by Aroma 3D</h2>
+                </div>
+                
+                <div class="contact-grid">
+                    <!-- Form (Left) -->
+                    <div class="contact-form-panel glass-card">
+                        <h3>Connect With Us</h3>
+                        <form id="contactForm" onsubmit="event.preventDefault(); alert('Message sent successfully!');">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" required placeholder="Your full name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" required placeholder="Your email address">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" rows="4" required placeholder="Write a note..."></textarea>
+                            </div>
+                            <button type="submit" class="cta-button form-submit">Send Message</button>
+                        </form>
+                    </div>
+
+                    <!-- Hours & Location (Right) -->
+                    <div class="contact-info-panel glass-card">
+                        <div class="info-block">
+                            <h4>Hours of Operation</h4>
+                            <p><strong>Monday - Friday:</strong> 7:00 AM — 6:00 PM</p>
+                            <p><strong>Saturday - Sunday:</strong> 8:00 AM — 8:00 PM</p>
+                        </div>
+                        <div class="info-block">
+                            <h4>Find Our Roastery</h4>
+                            <p>458 Espresso Boulevard, Suite 100</p>
+                            <p>Seattle, WA 98101</p>
+                            <p class="phone-link"><a href="tel:+12065550198">+1 (206) 555-0198</a></p>
+                        </div>
+                        <div class="socials-group">
+                            <a href="#" class="social-icon" aria-label="Instagram">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                    <path d="M16 11.37A4.000 4.000 0 1 1 12.63 8 4.000 4.000 0 0 1 16 11.37z"></path>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                </svg>
+                            </a>
+                            <a href="#" class="social-icon" aria-label="Facebook">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                                </svg>
+                            </a>
+                            <a href="#" class="social-icon" aria-label="Twitter">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container footer-content">
+                <p>&copy; 2026 Aroma 3D. All Rights Reserved. Crafted for premium coffee enthusiasts.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Script imports: Three.js and GSAP via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- GSAP for core animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- ScrollTrigger for scroll-bound animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Main Web App Script -->
+    <script src="main.js"></script>
+</body>
+</html>
